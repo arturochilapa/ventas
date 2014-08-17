@@ -18,9 +18,9 @@ Route::get('/', function()
 
 Route::get('login', function()
 {
-*/
 	return "asdsadasdasd";
 });
 
 Route::resource('logins','Users@create');
+*/
 Route::get('login', [function() { 'Users@create'; }]);
