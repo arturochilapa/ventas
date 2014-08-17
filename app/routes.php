@@ -12,6 +12,8 @@
 */
 
 Route::resource('/register', 'UsersController@create');
+Route::resource('/register/save', 'UsersController@store');
+Route::resource('/register/confirm', 'UsersController@confirm');
 
 Route::get('profile', array('before' => 'auth.basic', function()
 {
