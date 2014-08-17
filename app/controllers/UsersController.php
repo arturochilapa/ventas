@@ -14,6 +14,18 @@ class UsersController extends \BaseController {
 
 
 	/**
+	 * Confirmar Usuarios Registrados.
+	 *
+	 * @return Response
+	 */
+	public function confirm()
+	{
+	   return View::make('users.confirm');
+    }
+        
+	
+
+	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
@@ -32,7 +44,33 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+	   $rules = array(
+            'email'         => 'required|email|unique:users',
+            'firstname'     => 'required',
+            'midlename'     => 'required',
+            'password'     => 'required|min:6',
+            'birthdate'     => 'required|date',
+       );
+       $validator = Validator::make(Input::all(), $rules);
+       if ($validator->fails()) {
+            return Redirect::to('/register')->withErrors($validator);
+        } else {
+            $users = new User;
+            $password = Hash::make(Input::get('password'));
+            $users->email = Input::get('email');
+            $users->alias = Input::get('email');
+            $users->password = $password;
+            $users->firstname = Input::get('firstname');
+            $users->middlename = Input::get('midlename');
+            $users->lastname = Input::get('lastname');
+            $users->birthdate = Input::get('birthdate');
+            $users->save();
+            Session::flash('message', trans('users.user_created'));
+            
+            
+        }
+	   
+		return View::make('users.store');
 	}
 
 

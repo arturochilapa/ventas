@@ -7,6 +7,16 @@
         <h3 class="panel-title">@lang('users.register_title')</h3>
       </div>
       <div class="panel-body">
+        {{ HTML::ul($errors->all()) }}
+
+        {{ Form::open(array(
+        'url' => '/register/save',
+        'method' => 'POST'
+        )) }}
+        <div class="form-group">
+    		{{ Form::label('email', trans('users.email')) }}
+    		{{ Form::text('email', null, array('class' => 'form-control')) }}
+    	</div>
         <div class="form-group">
     		{{ Form::label('firstname', trans('users.firstname')) }}
     		{{ Form::text('firstname', null, array('class' => 'form-control')) }}
@@ -19,16 +29,36 @@
     		{{ Form::label('lastname', trans('users.lastname')) }}
     		{{ Form::text('lastname', null, array('class' => 'form-control')) }}
     	</div>
-        <div class="btn-group">
-          <button type="button" class="btn btn-primary">Left</button>
-          <button type="button" class="btn btn-primary">Middle</button>
-          <button type="button" class="btn btn-primary">Right</button>
-        </div>        
+        <div class="form-group">
+    		{{ Form::label('password', trans('users.password')) }}
+    		{{ Form::input('password', 'password', null, array('class' => 'form-control')) }}
+    	</div>
+        
+        <div class="form-group">
+    		{{ Form::label('birthdate', trans('users.birthdate')) }}
+    		{{ Form::text('birthdate', null, array('class' => 'form-control')) }}
+    	</div>
+        
+        
+        <div id="selector" class="btn-group">
+        
+          <button type="button" class="btn btn-default">@lang('users.male')</button>
+          <button type="button" class="btn btn-default">@lang('users.female')</button>
+        </div> 
+        <br /><br />
+        {{ Form::submit(trans('users.register_user'), array('class' => 'btn btn-primary')) }}
+        
+        {{ Form::close() }}     
                 
       </div>
     </div>
     <script>
-        $('.btn').button();
-    </script>        
-    
+    $('#selector button').click(function() {
+        $('#selector button').addClass('active').not(this).removeClass('active');
+    // TODO: insert whatever you want to do with $(this) here
+    });
+    $( "#birthdate" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    </script>
+            
+
 @stop
