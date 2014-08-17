@@ -30,5 +30,5 @@
     <script>
         $('.btn').button();
     </script>        
-    
+
 @stop
