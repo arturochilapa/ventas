@@ -11,4 +11,4 @@
 |
 */
 
-Route::resource('/login', 'UsersController@create');
+Route::resource('/register', 'UsersController@create');
