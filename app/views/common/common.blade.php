@@ -30,12 +30,25 @@
                 <li {{(Request::is('register') ? 'class="active"' : '')}}><a href="{{URL::to('/register')}}">Register</a></li>
                 
               </ul>
-              <form class="navbar-form navbar-left" role="search" method="post" action="/foo/search">
+              <form class="navbar-form navbar-left" role="search" method="post" action="/search">
                 <div class="form-group">
                   <input type="text" value="" class="form-control" name="q" placeholder="B&uacute;scar" />
                 </div>
                 <button type="submit" class="btn btn-default">B&uacute;scar</button>
               </form>
+
+              @unless (Auth::check())
+                  <div >
+                    <form class="navbar-form navbar-left" role="search" method="post" action="/login">
+                      <div class="form-group">
+                        <input type="text" value="" class="form-control" name="email" placeholder="@lang('users.email')" />
+                        <input type="text" value="" class="form-control" name="password" placeholder="@lang('users.password')" />
+                      </div>
+                      <button type="submit" class="btn btn-default">@lang('users.login')</button>
+                    </form>
+                  </div>
+              @endunless
+              
             </div>
           </div>
         </nav>
@@ -43,5 +56,6 @@
     <div style="margin: 50px;">
     @yield('content')
     </div>
+
 </body>
 </html>
