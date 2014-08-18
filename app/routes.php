@@ -20,4 +20,5 @@ Route::get('profile', array('before' => 'auth.basic', function()
     // Only authenticated users may enter...
 }));
 
-Route::resource('/login', 'UsersController@create');
+Route::resource('/login', 'UsersController@login');
+Route::resource('/logout', 'UsersController@logout');

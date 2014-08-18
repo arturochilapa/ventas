@@ -64,6 +64,5 @@
     });
     $( "#birthdate" ).datepicker({ dateFormat: 'yy-mm-dd' });
     </script>
-            
 
 @stop
