@@ -39,11 +39,11 @@
     		{{ Form::text('birthdate', null, array('class' => 'form-control')) }}
     	</div>
         
-        
+        <input type="hidden" name="sex" value="" id="sex" />
         <div id="selector" class="btn-group">
         
-          <button type="button" class="btn btn-default">@lang('users.male')</button>
-          <button type="button" class="btn btn-default">@lang('users.female')</button>
+          <button type="button" class="btn btn-default" id="male">@lang('users.male')</button>
+          <button type="button" class="btn btn-default" id="female">@lang('users.female')</button>
         </div> 
         <br /><br />
         {{ Form::submit(trans('users.register_user'), array('class' => 'btn btn-primary')) }}
@@ -55,7 +55,12 @@
     <script>
     $('#selector button').click(function() {
         $('#selector button').addClass('active').not(this).removeClass('active');
-    // TODO: insert whatever you want to do with $(this) here
+        if($(this).attr('id') == 'male'){
+            $("#sex").val('m');
+        }else{
+            $("#sex").val('f');
+        }
+        
     });
     $( "#birthdate" ).datepicker({ dateFormat: 'yy-mm-dd' });
     </script>

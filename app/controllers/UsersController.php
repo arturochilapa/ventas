@@ -64,6 +64,8 @@ class UsersController extends \BaseController {
             $users->middlename = Input::get('midlename');
             $users->lastname = Input::get('lastname');
             $users->birthdate = Input::get('birthdate');
+            $users->sex = Input::get('sex');
+            $users->status = 'inactive';
             $users->save();
             Session::flash('message', trans('users.user_created'));
             
