@@ -28,27 +28,21 @@
               <ul class="nav navbar-nav">
                 <li {{(Request::is('/') ? 'class="active"' : '')}}><a href="/">Inicio</a></li>
                 <li {{(Request::is('register') ? 'class="active"' : '')}}><a href="{{URL::to('/register')}}">Register</a></li>
+                <li>{{ HTML::route('profile', 'Logout ') }}</li>
                 
               </ul>
-              <form class="navbar-form navbar-left" role="search" method="post" action="/search">
-                <div class="form-group">
-                  <input type="text" value="" class="form-control" name="q" placeholder="B&uacute;scar" />
-                </div>
-                <button type="submit" class="btn btn-default">B&uacute;scar</button>
-              </form>
 
               @unless (Auth::check())
                   <div >
-                    <form class="navbar-form navbar-left" role="search" method="post" action="/login">
+                    <form class="navbar-form navbar-right" role="search" method="post" action="/login">
                       <div class="form-group">
-                        <input type="text" value="" class="form-control" name="email" placeholder="@lang('users.email')" />
-                        <input type="text" value="" class="form-control" name="password" placeholder="@lang('users.password')" />
+                        <input type="text" value="" class="form-control input-sm" name="email" placeholder="@lang('users.email')" />
+                        <input type="text" value="" class="form-control input-sm" name="password" placeholder="@lang('users.password')" />
                       </div>
-                      <button type="submit" class="btn btn-default">@lang('users.login')</button>
+                      <button type="submit" class="btn btn-default btn-sm">@lang('users.login')</button>
                     </form>
                   </div>
               @endunless
-              
             </div>
           </div>
         </nav>
