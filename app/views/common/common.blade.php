@@ -40,15 +40,10 @@
                       <div class="form-group">
 
                         <input type="text" value="@if(isset($data['email'])) {{$data['email']}} @endif" class="form-control" name="email" placeholder="@lang('users.email')" />
-                        <input type="password" value="" class="form-control" name="password" placeholder="@lang('users.password')" />
+                        <input type="password" value="" class="form-control input-sm" name="password" placeholder="@lang('users.password')" />
                         @if(isset($data['email'])) {{$data['email']}} @endif
                         @if(isset($data['password'])) {{$data['password']}} @endif
                         @if(isset($data['message'])) {{$data['message']}} @endif
-
-                        <input type="text" value="" class="form-control input-sm" name="email" placeholder="@lang('users.email')" />
-                        <input type="password" value="" class="form-control input-sm" name="password" placeholder="@lang('users.password')" />
-                        <input type="text" value="" class="form-control input-sm" name="password" placeholder="@lang('users.password')" />
-
                       </div>
                       <button type="submit" class="btn btn-default btn-sm">@lang('users.login')</button>
                     </form>
@@ -60,8 +55,8 @@
               @endif
 
               @unless (Auth::check())
-    You are not signed in.
-@endunless
+              You are not signed in.
+              @endunless
               
             </div>
           </div>
