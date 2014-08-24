@@ -34,17 +34,42 @@
                 
               </ul>
 
-              @unless (Auth::check())
+              @if (!Auth::check())
                   <div >
                     <form class="navbar-form navbar-right" role="search" method="post" action="/login">
                       <div class="form-group">
+<<<<<<< HEAD
+                        <input type="text" value="@if(isset($data['email'])) {{$data['email']}} @endif" class="form-control" name="email" placeholder="@lang('users.email')" />
+                        <input type="password" value="" class="form-control" name="password" placeholder="@lang('users.password')" />
+                        @if(isset($data['email'])) {{$data['email']}} @endif
+                        @if(isset($data['password'])) {{$data['password']}} @endif
+                        @if(isset($data['message'])) {{$data['message']}} @endif
+=======
                         <input type="text" value="" class="form-control input-sm" name="email" placeholder="@lang('users.email')" />
+<<<<<<< HEAD
                         <input type="password" value="" class="form-control input-sm" name="password" placeholder="@lang('users.password')" />
+=======
+                        <input type="text" value="" class="form-control input-sm" name="password" placeholder="@lang('users.password')" />
+>>>>>>> ed28a433f0e644b218390431e11a62ec0a83fa36
+>>>>>>> 22dfd3499e9a0ddf3ad8d3527789dc79f02f6a52
                       </div>
                       <button type="submit" class="btn btn-default btn-sm">@lang('users.login')</button>
                     </form>
                   </div>
+<<<<<<< HEAD
+              @else
+                <div>
+                  <a href="/logout">@lang('users.logout')</a>
+                </div>
+              @endif
+
+              @unless (Auth::check())
+    You are not signed in.
+@endunless
+              
+=======
               @endunless
+>>>>>>> ed28a433f0e644b218390431e11a62ec0a83fa36
             </div>
           </div>
         </nav>
