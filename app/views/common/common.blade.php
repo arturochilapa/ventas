@@ -28,7 +28,9 @@
               <ul class="nav navbar-nav">
                 <li {{(Request::is('/') ? 'class="active"' : '')}}><a href="/">Inicio</a></li>
                 <li {{(Request::is('register') ? 'class="active"' : '')}}><a href="{{URL::to('/register')}}">Register</a></li>
-                <li>{{ HTML::route('profile', 'Logout ') }}</li>
+                 @if(Auth::check())
+                 <li><a href="{{URL::to('/logout')}}">@lang('users.logout')</a></li> 
+                 @endif
                 
               </ul>
 
@@ -42,6 +44,11 @@
                         @if(isset($data['email'])) {{$data['email']}} @endif
                         @if(isset($data['password'])) {{$data['password']}} @endif
                         @if(isset($data['message'])) {{$data['message']}} @endif
+
+                        <input type="text" value="" class="form-control input-sm" name="email" placeholder="@lang('users.email')" />
+                        <input type="password" value="" class="form-control input-sm" name="password" placeholder="@lang('users.password')" />
+                        <input type="text" value="" class="form-control input-sm" name="password" placeholder="@lang('users.password')" />
+
                       </div>
                       <button type="submit" class="btn btn-default btn-sm">@lang('users.login')</button>
                     </form>

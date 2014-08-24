@@ -1,10 +1,2 @@
-<?php
-
-/**
- * @author Webrek
- * @copyright 2014
- */
-
-
-
-?>
+Hola
+{{print_r($data)}}
