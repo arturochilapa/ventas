@@ -48,10 +48,6 @@
                       <button type="submit" class="btn btn-default btn-sm">@lang('users.login')</button>
                     </form>
                   </div>
-              @else
-                <div>
-                  <a href="/logout">@lang('users.logout')</a>
-                </div>
               @endif
 
               @unless (Auth::check())
