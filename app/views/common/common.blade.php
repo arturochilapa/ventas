@@ -37,17 +37,28 @@
                 <button type="submit" class="btn btn-default">B&uacute;scar</button>
               </form>
 
-              @unless (Auth::check())
+              @if (!Auth::check())
                   <div >
                     <form class="navbar-form navbar-left" role="search" method="post" action="/login">
                       <div class="form-group">
-                        <input type="text" value="" class="form-control" name="email" placeholder="@lang('users.email')" />
-                        <input type="text" value="" class="form-control" name="password" placeholder="@lang('users.password')" />
+                        <input type="text" value="@if(isset($data['email'])) {{$data['email']}} @endif" class="form-control" name="email" placeholder="@lang('users.email')" />
+                        <input type="password" value="" class="form-control" name="password" placeholder="@lang('users.password')" />
+                        @if(isset($data['email'])) {{$data['email']}} @endif
+                        @if(isset($data['password'])) {{$data['password']}} @endif
+                        @if(isset($data['message'])) {{$data['message']}} @endif
                       </div>
                       <button type="submit" class="btn btn-default">@lang('users.login')</button>
                     </form>
                   </div>
-              @endunless
+              @else
+                <div>
+                  <a href="/logout">@lang('users.logout')</a>
+                </div>
+              @endif
+
+              @unless (Auth::check())
+    You are not signed in.
+@endunless
               
             </div>
           </div>

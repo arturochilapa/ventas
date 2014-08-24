@@ -122,16 +122,28 @@ class UsersController extends \BaseController {
 		$password = Input::get('password');
 
 		//Test
-		$user = User::find(1);
-		Auth::login($user);
+/*
+$password = Hash::make($password);
+if (Hash::check('secret', $hashedPassword))
+{
+    // The passwords match...
+}
+*/
 
 		//Auth
-		if (Auth::attempt(array('email' => $email, 'password' => $password, 'active' => 1)))
+		if (Auth::attempt(array('email' => $email, 'password' => $password, 'status' => 'active')))
 		{
 		    // The user is active, not suspended, and exists.
+			
+			#$user = User::find(1);
+			#Auth::login($user);
+			$message = "Logeado autom";
+		}else{
+			$message = "Invalido";
+
 		}
 
-		$data = array('email'=>$email,'password'=>$password);
+		$data = array('email'=>$email,'password'=>$password,'message'=>$message);
 
 		return View::make('users.register',compact('data'));
 	}
@@ -146,7 +158,8 @@ class UsersController extends \BaseController {
 	{
 		//
 		Auth::logout();
-		return View::make('users.register');
+		#return View::make('users.register');
+		return Redirect::to('/register');
 	}
 
 
