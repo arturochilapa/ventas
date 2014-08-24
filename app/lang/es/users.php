@@ -9,5 +9,6 @@ return array(
     "password"              => "Contraseña",
     "register_title"        => "Registrarse",
     "login"        			=> "Iniciar sesión",
+    "logout"                => "Salir",
 );
 ?>

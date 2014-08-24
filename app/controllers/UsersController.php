@@ -32,11 +32,6 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-        $data = array('a' => 1);
-        Mail::send('emails.welcome', $data, function($message)
-{
-            $message->to('foo@example.com', 'John Smith')->subject('Welcome!');
-        });
 		return View::make('users.register');
 	}
 
@@ -59,6 +54,8 @@ class UsersController extends \BaseController {
        if ($validator->fails()) {
             return Redirect::to('/register')->withErrors($validator);
         } else {
+            
+            $hashActivate = md5(rand(1, 999999999));                                    
             $users = new User;
             $password = Hash::make(Input::get('password'));
             $users->email = Input::get('email');
@@ -70,8 +67,15 @@ class UsersController extends \BaseController {
             $users->birthdate = Input::get('birthdate');
             $users->sex = Input::get('sex');
             $users->status = 'inactive';
+            $users->hash = $hashActivate;            
             $users->save();
             Session::flash('message', trans('users.user_created'));
+            $data = array("a" => 1);
+            Mail::send('emails.welcome', $data, function($message)
+            {
+                $message->from('postmaster@eprestamos.com.mx', 'Laravel');
+                $message->to(Input::get('email'), Input::get('firstname').' '.Input::get('midlename'))->subject('Welcome!');
+            });          
             
             
         }
