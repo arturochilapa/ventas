@@ -32,7 +32,11 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-        
+        $data = array('a' => 1);
+        Mail::send('emails.welcome', $data, function($message)
+{
+            $message->to('foo@example.com', 'John Smith')->subject('Welcome!');
+        });
 		return View::make('users.register');
 	}
 
@@ -64,6 +68,8 @@ class UsersController extends \BaseController {
             $users->middlename = Input::get('midlename');
             $users->lastname = Input::get('lastname');
             $users->birthdate = Input::get('birthdate');
+            $users->sex = Input::get('sex');
+            $users->status = 'inactive';
             $users->save();
             Session::flash('message', trans('users.user_created'));
             
@@ -108,60 +114,6 @@ class UsersController extends \BaseController {
 	{
 		//
 	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function login()
-	{
-		//
-		$email = Input::get('email');
-		$password = Input::get('password');
-
-		//Test
-/*
-$password = Hash::make($password);
-if (Hash::check('secret', $hashedPassword))
-{
-    // The passwords match...
-}
-*/
-
-		//Auth
-		if (Auth::attempt(array('email' => $email, 'password' => $password, 'status' => 'active')))
-		{
-		    // The user is active, not suspended, and exists.
-			
-			#$user = User::find(1);
-			#Auth::login($user);
-			$message = "Logeado autom";
-		}else{
-			$message = "Invalido";
-
-		}
-
-		$data = array('email'=>$email,'password'=>$password,'message'=>$message);
-
-		return View::make('users.register',compact('data'));
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function logout()
-	{
-		//
-		Auth::logout();
-		#return View::make('users.register');
-		return Redirect::to('/register');
-	}
-
 
 	/**
 	 * Remove the specified resource from storage.

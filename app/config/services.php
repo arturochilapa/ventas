@@ -15,8 +15,8 @@ return array(
 	*/
 
 	'mailgun' => array(
-		'domain' => '',
-		'secret' => '',
+		'domain' => 'eprestamos.com.mx',
+		'secret' => 'key-9e89ffa0fe8ecd704def94e639900760',
 	),
 
 	'mandrill' => array(
