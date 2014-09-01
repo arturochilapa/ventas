@@ -140,5 +140,18 @@ class UsersController extends \BaseController {
 		//
 	}
 
+	/**
+	* Valida el Hash en la confirmacion de mail
+	* @param string $hash
+	* @return Confirmacion
+	*/
+	public function hashValidation($hash){
+		$user = User::where('hash', '=', $hash)
+		->get();
+		print_r($user);
+		#$users = User::where('votes', '>', 100)->take(10)->get();
+
+	}
+
 
 }

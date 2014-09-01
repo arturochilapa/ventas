@@ -20,5 +20,10 @@ Route::get('profile', array('before' => 'auth.basic', function()
     // Only authenticated users may enter...
 }));
 
+#
+#	Usuarios
+#
 Route::resource('/login', 'AuthController@login');
 Route::resource('/logout', 'AuthController@logout');
+Route::resource('/confirm/mail/{hash}', 'UsersController@hashValidation');
+
