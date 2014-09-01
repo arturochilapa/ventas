@@ -14,6 +14,8 @@ class AuthController extends \BaseController
             // The user is active, not suspended, and exists.
             $data = array('email' => $email, 'password' => $password);
             return Redirect::intended('profile');
+        }else{
+            return Redirect::to("foo");
         }
 
         

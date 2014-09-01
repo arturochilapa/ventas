@@ -75,17 +75,22 @@ class UsersController extends \BaseController {
             $users->hash = $hashActivate;            
             $users->save();
             Session::flash('message', trans('users.user_created'));
-            $data = array("a" => 1);
+            $data = array("hash" => $hashActivate);
+            $data = array(
+                "email"     => Input::get('email'),
+                "name"      => Input::get('firstname'),
+                "hash"      => $hashActivate
+            );
             Mail::send('emails.welcome', $data, function($message)
             {
                 $message->from('postmaster@eprestamos.com.mx', 'Laravel');
                 $message->to(Input::get('email'), Input::get('firstname').' '.Input::get('midlename'))->subject('Welcome!');
             });          
-            
+            return View::make('users.store');
             
         }
 	   
-		return View::make('users.store');
+		
 	}
 
 

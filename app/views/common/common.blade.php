@@ -48,12 +48,7 @@
                       <button type="submit" class="btn btn-default btn-sm">@lang('users.login')</button>
                     </form>
                   </div>
-              @endif
-
-              @unless (Auth::check())
-              You are not signed in.
-              @endunless
-              
+              @endif              
             </div>
           </div>
         </nav>
