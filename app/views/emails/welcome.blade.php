@@ -8,7 +8,7 @@
         <div id="box">
             <h2>{{trans('email.hello')}} {{$name}},</h2>
             <p>{{trans('email.thanks')}}</p>
-            <p><a href="{{link_to('/confirm/mail/'.$hasg)}}">{{trans('email.confirmmail')}}</a></p>
+            <p>{{link_to('/confirm/mail/'.$hash, trans('email.confirmmail'))}}</p>
         </div> 
 	</body>
 </html>

@@ -83,7 +83,7 @@ class UsersController extends \BaseController {
             );
             Mail::send('emails.welcome', $data, function($message)
             {
-                $message->from('postmaster@eprestamos.com.mx', 'Laravel');
+                $message->from('postmaster@eprestamos.com.mx', 'Ventas');
                 $message->to(Input::get('email'), Input::get('firstname').' '.Input::get('midlename'))->subject('Welcome!');
             });          
             return View::make('users.store');
